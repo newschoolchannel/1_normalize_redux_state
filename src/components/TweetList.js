@@ -19,7 +19,7 @@ export default function TweetList() {
   return(
     <ul>
       {
-        state.entities.users.allIds.map(userId => {
+        Object.keys(state.entities.users.byId).map(userId => {
           const user = state.entities.users.byId[userId]
 
           return (

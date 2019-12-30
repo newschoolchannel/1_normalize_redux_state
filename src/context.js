@@ -14,8 +14,7 @@ const Store = React.createContext({
           name: 'Jen',
           tweets: [3, 4]
         }
-      },
-      allIds: [1, 2]
+      }
     },
     tweets: {
       byId: {
@@ -35,8 +34,7 @@ const Store = React.createContext({
           id: 4,
           body: 'fourth tweet'
         }
-      },
-      allIds: [1, 2, 3, 4]
+      }
     }
   }
 });
