@@ -1,8 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import Store from "../context";
 
 export default function TweetList() {
-  const [tweetBody, setTweetBody] = useState({ userId: '', body: '' })
   const { state, dispatch } = useContext(Store);
 
   function handleUpdate(user, tweet) {
