@@ -4,13 +4,12 @@ import Store from "../context";
 export default function TweetList() {
   const { state, dispatch } = useContext(Store);
 
-  function handleUpdate(user, tweet) {
+  function handleUpdate(tweet) {
     return () => dispatch(
       {
         type: "UPDATE_TWEET",
         payload: {
-          userId: user.id,
-          tweetId: tweet.id,
+          id: tweet.id,
           body: document.getElementById(tweet.id).value
         }
       }
@@ -20,26 +19,30 @@ export default function TweetList() {
   return(
     <ul>
       {
-        state.users.map(
-          user => (
+        state.entities.users.allIds.map(userId => {
+          const user = state.entities.users.byId[userId]
+
+          return (
             <li key={user.id}>
               {user.name}
               <ul>
                 {
-                  user.tweets.map(
-                    tweet => (
+                  user.tweets.map(tweetId => {
+                    const tweet = state.entities.tweets.byId[tweetId]
+
+                    return(
                       <li key={tweet.id}>
                         {tweet.body}
                         <input id={tweet.id} />
-                        <button onClick={handleUpdate(user, tweet)}>update</button>
+                        <button onClick={handleUpdate(tweet)}>update</button>
                       </li>
                     )
-                  )
+                  })
                 }
               </ul>
             </li>
           )
-        )
+        })
       }
     </ul>
   )
